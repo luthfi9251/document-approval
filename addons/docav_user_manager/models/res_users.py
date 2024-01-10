@@ -6,10 +6,9 @@ class ResUsers(models.Model):
     @api.model
     def create(self, vals):
         new_user = super(ResUsers, self).create(vals)
-        pegawai = self.env['docav.pegawai'].search([('email', '=', new_user.email)])
-        for peg in pegawai:
-            peg.write({'user_id': new_user.id})
+        pegawai = self.env['docav.pegawai'].search([('email', '=', new_user.email)], limit=1)
         if pegawai:
-            new_user.oauth_provider_id = False
+            pegawai.write({'user_id': new_user.id})
+            new_user.write({'groups_id': [(6, 0, [1,16,17,7,13,6])]})
 
         return new_user

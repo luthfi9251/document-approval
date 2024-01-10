@@ -1,3 +1,5 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-docav_user_hr_employee,docav_user_hr_employee,model_docav_pegawai,,1,1,1,1
-docav_user_hr_department,docav_user_hr_department,model_docav_department,,1,1,1,1
+docav_user_hr_employee,docav_user_hr_employee,model_docav_pegawai,base.group_user,1,0,0,0
+docav_user_hr_department,docav_user_hr_department,model_docav_department,base.group_user,1,0,0,0
+admin_docav_user_hr_employee,admin_docav_user_hr_employee,model_docav_pegawai,base.group_system,1,1,1,1
+admin_docav_user_hr_department,admin_docav_user_hr_department,model_docav_department,base.group_system,1,1,1,1

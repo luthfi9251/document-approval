@@ -3,6 +3,8 @@ from odoo.exceptions import UserError, ValidationError, AccessError
 from .selection import ApprovalMethods, DocumentState, ApproverState, ApprovalStep, DocumentVisibility
 
 import logging
+import os
+import base64
 
 def cetak(var):
     logger = logging.getLogger(__name__)
@@ -327,9 +329,16 @@ class DocApprovalDocument(models.Model):
         translate=True,
     )
     file = fields.Binary(
-        string='File',
+        string='File'
+    )
+    file_path = fields.Char(
+        string="File Path",
         required=True,
-        attachment=True,
+    )
+    file_uploaded = fields.Boolean(
+        string="File Terupload",
+        default=False,
+        readonly=True
     )
     file_name = fields.Char(
         string='File Name'
@@ -339,3 +348,44 @@ class DocApprovalDocument(models.Model):
     def _onchange_file_name(self):
         if self.file_name and not self.name:
             self.name = self.file_name
+    
+    @api.onchange('file', 'file_name')
+    def _onchange_file_path(self):
+        if self.file and self.file_name:
+            file_name = self.file_name or 'file'
+            file_extension = file_name.split('.')[-1]
+            # Tetapkan lokasi penyimpanan file
+            self.file_path = f'/etc/file-storage/documents/{file_name}.{file_extension}'
+    
+    @api.model
+    def create(self, vals):
+        new_record = super(DocApprovalDocument, self).create(vals)
+        new_record.save_file_locally()  # Memanggil fungsi save_file_locally saat record baru dibuat
+        return new_record
+    
+    def unlink(self):
+        for record in self:
+            if record.file_uploaded:
+                if os.path.exists(record.file_path):
+                    os.remove(record.file_path)
+        
+        return super(DocApprovalDocument, self).unlink()
+
+    def save_file_locally(self):
+        for record in self:
+            if record.file:
+                # Tulis data file ke dalam file lokal
+                file_data = base64.b64decode(self.file)
+                with open(record.file_path, 'wb') as file:
+                    file.write(file_data)
+                record.file_uploaded = True
+                record.file = False
+    
+    def download_file(self):
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        controller_url = f"{base_url}/download/file?id={self.id}"
+        return {
+            'type': 'ir.actions.act_url',
+            'url': controller_url,
+            'target': 'self',
+        }

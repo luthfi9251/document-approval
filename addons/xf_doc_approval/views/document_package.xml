@@ -44,6 +44,9 @@
                                     <field name="name"/>
                                     <field name="file" filename="file_name"/>
                                     <field name="file_name" invisible="True"/>
+                                    <field name="file_uploaded"/>
+                                    <field name="file_path" invisible="True"/>
+                                    <button string="Unduh File" type="object" name="download_file" class="oe_highlight" attrs="{'invisible': [('file_uploaded', '=', False)]}"/>
                                 </tree>
                                 <form>
                                     <group>
