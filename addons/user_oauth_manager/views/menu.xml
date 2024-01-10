@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem
+            id="oauth_manager_root"
+            name="Manage Oauth User"
+            sequence="10"/>
+            
+        <menuitem
+            id="oauth_manager_manage_user"
+            name="Manage User"
+            parent="oauth_manager_root"
+            action="oauth_user_action"
+            sequence="10"/>
+
+        <menuitem
+            id="oauth_manager_manage_role"
+            name="Manage Role"
+            parent="oauth_manager_root"
+            action="oauth_manager_action"
+            sequence="20"/>
+    </data>
+</odoo>

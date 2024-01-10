@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem
+            id="docav_menu_root"
+            name="Manage User Docav"
+            sequence="10"/>
+            
+        <menuitem
+            id="docav_user_manager"
+            name="Manage User"
+            parent="docav_menu_root"
+            action="docav_user_manager_action"
+            sequence="10"/>
+
+        <menuitem
+            id="docav_department_manager"
+            name="Manage Department"
+            parent="docav_menu_root"
+            action="docav_department_manager_action"
+            sequence="20"/>
+    </data>
+</odoo>

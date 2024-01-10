@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="docav_user_manager_tree" model="ir.ui.view">
+            <field name="name">docav.user_manager.tree</field>
+            <field name="model">docav.pegawai</field>
+            <field name="arch" type="xml">
+                <tree string="Channel">
+                    <field name="full_name"/>
+                    <field name="structural"/>
+                    <field name="scope_kerja"/>
+                    <field name="punya_user"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="docav_user_manager_form" model="ir.ui.view">
+            <field name="name">docav.user_manager.form</field>
+            <field name="model">docav.pegawai</field>
+            <field name="arch" type="xml">
+                <form string="Tambah Pegawai">
+                    <sheet>
+                        <group name="Pegawai" string="Pegawai">
+                            <field name="name"/>
+                            <field name="structural"/>
+                            <field name="email"/>
+                            <field name="gelar_depan"/>
+                            <field name="gelar_belakang"/>
+                            <field name="full_name"/>
+                            <field name="user_id"/>
+                            <field name="scope_kerja"/>
+                            <field name="employee_type"/>
+                            <field name="company_id"/>
+                            <field name="resource_id"/>
+                            <field name="punya_user"/>
+                            <field name="aktif"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="docav_user_manager_action" model="ir.actions.act_window">
+            <field name="name">Manage user</field>
+            <field name="res_model">docav.pegawai</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+        <record id="docav_department_manager_tree" model="ir.ui.view">
+            <field name="name">docav.department_manager.tree</field>
+            <field name="model">docav.department</field>
+            <field name="arch" type="xml">
+                <tree string="Channel">
+                    <field name="name"/>
+                    <field name="tipe_unit"/>
+                    <field name="email"/>
+                    <field name="sekretaris"/>
+                </tree>
+            </field>
+        </record>
+        <record id="docav_department_manager_form" model="ir.ui.view">
+            <field name="name">docav.department_manager.form</field>
+            <field name="model">docav.department</field>
+            <field name="arch" type="xml">
+                <form string="Tambah Departemen">
+                    <sheet>
+                        <group name="Departemen" string="Departemen">
+                            <field name="name"/>
+                            <field name="tipe_unit"/>
+                            <field name="singkatan"/>
+                            <field name="sekretaris"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="docav_department_manager_action" model="ir.actions.act_window">
+            <field name="name">Manage Role</field>
+            <field name="res_model">docav.department</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

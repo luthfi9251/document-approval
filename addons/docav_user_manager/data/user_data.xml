@@ -1,0 +1,11 @@
+<odoo>
+  <record id="id1" model="docav.pegawai">
+    <field name="name">Muhammad Luthfi Irfan</field>
+    <field name="structural">1</field>
+  </record>
+
+  <record id="id2" model="tutorial.example">
+    <field name="field_a">valueA2</field>
+    <field name="field_b">valueB2</field>
+  </record>
+</odoo>
