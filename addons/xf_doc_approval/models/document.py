@@ -5,6 +5,7 @@ from .selection import ApprovalMethods, DocumentState, ApproverState, ApprovalSt
 import logging
 import os
 import base64
+import re, time
 
 def cetak(var):
     logger = logging.getLogger(__name__)
@@ -352,10 +353,9 @@ class DocApprovalDocument(models.Model):
     @api.onchange('file', 'file_name')
     def _onchange_file_path(self):
         if self.file and self.file_name:
-            file_name = self.file_name or 'file'
-            file_extension = file_name.split('.')[-1]
+            file_name = self.generate_filename(self.file_name)
             # Tetapkan lokasi penyimpanan file
-            self.file_path = f'/etc/file-storage/documents/{file_name}.{file_extension}'
+            self.file_path = f'/etc/file-storage/documents/{file_name}'
     
     @api.model
     def create(self, vals):
@@ -389,3 +389,19 @@ class DocApprovalDocument(models.Model):
             'url': controller_url,
             'target': 'self',
         }
+
+    def generate_filename(self, file):
+        '''
+            yang harus dilakukan pada saat generate file name
+            1. pastikan file name hanya memiliki satu format ex .pdf tidak boleh ada perulangan .ec.re
+            2. hanya boleh ada satu .
+            3. gunakan filename yang ramah url / tidak diperbolehkan ada simbol khusus
+        '''
+        filename_list = os.path.basename(file).split(".")
+        file_name = "-".join(filename_list[0:-1])
+        file_format = filename_list[-1]
+
+        #ubah spasi dan symbol menjadi -
+        pattern = r"[\s\W]"
+        file_name1 = re.sub(pattern, "-", file_name)
+        return f"{time.time_ns()}-{file_name1}.{file_format}"  

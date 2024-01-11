@@ -12,3 +12,14 @@ class ResUsers(models.Model):
             new_user.write({'groups_id': [(6, 0, [1,16,17,7,13,6])]})
 
         return new_user
+    
+    def docav_user_default_hook(self):
+        # Create the new user record
+        user = super(ResUsers, self).create({
+            'name': 'docav default',
+            'login': 'docav_default',
+            'password': 'cobatebak',
+            'email': 'docav_default@example.com'
+        })
+        # Assign necessary groups
+        user.write({'groups_id': [(4, self.env.ref('base.group_user').id)]})

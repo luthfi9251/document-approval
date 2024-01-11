@@ -1,11 +1,10 @@
 <odoo>
-  <record id="id1" model="docav.pegawai">
-    <field name="name">Muhammad Luthfi Irfan</field>
-    <field name="structural">1</field>
-  </record>
-
-  <record id="id2" model="tutorial.example">
-    <field name="field_a">valueA2</field>
-    <field name="field_b">valueB2</field>
-  </record>
+  <data noupdate="1">
+    <record id="docav_default" model="res.users">
+        <field name="name">docav_default</field>
+        <field name="login">default_docav</field>
+        <field name="password">cobatebak</field>
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_user')])]"/>
+    </record>
+  </data>
 </odoo>
