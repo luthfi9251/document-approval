@@ -110,4 +110,16 @@ class HREmployee(models.Model):
         
         return pegawai
 
+    @api.model
+    def name_search(self, name, args=None, operator='ilike', limit=100):
+        args = args or []
+        
+        if name:
+            records = self.search([('name', operator, name)])
+            return records.name_get()
+        
+        
+        return self.search([('full_name', operator, name)]+args, limit=limit).name_get()
+
+
     

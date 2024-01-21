@@ -15,6 +15,16 @@
             </field>
         </record>
 
+        <record id="docav_user_manager_search" model="ir.ui.view">
+            <field name="name">docav.user_manager.search</field>
+            <field name="model">docav.pegawai</field>
+            <field name="arch" type="xml">
+                <search string="Cari Pegawai">
+                    <field name="name" string="Nama" />
+                </search>
+            </field>
+        </record>
+
         <record id="docav_user_manager_form" model="ir.ui.view">
             <field name="name">docav.user_manager.form</field>
             <field name="model">docav.pegawai</field>

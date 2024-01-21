@@ -73,7 +73,7 @@
                             <field name="approver_ids" nolabel="1" colspan="2">
                                 <tree editable="bottom">
                                     <field name="step"/>
-                                    <field name="employee_id"/>
+                                    <field name="employee_id" context="{'search_default_customer': 1}"/>
                                     <field name="role"/>
                                     <field name="state"/>
                                     <field name="method" invisible="True"/>
