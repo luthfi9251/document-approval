@@ -6,7 +6,6 @@
     'description': 'Modul untuk memanage user',
     'data': [
         'security/ir.model.access.csv',
-        'data/user_data.xml',
         'views/manage_user_docav.xml',
         'views/menu.xml',
     ],

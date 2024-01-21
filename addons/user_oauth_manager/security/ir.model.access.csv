@@ -1,3 +1,0 @@
-id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-oauth_user_manager_role,oauth_user_manager_role,model_users_role,,1,1,1,1
-oauth_user_hr_employee,oauth_user_hr_employee,model_lf_pegawai,,1,1,1,1

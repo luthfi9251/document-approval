@@ -51,6 +51,7 @@ Key Features:
         # Data
         'data/mail_templates.xml',
         'data/mail_message_subtypes.xml',
+        'data/user_data.xml',
     ],
     'depends': ['base', 'web', 'mail','docav_user_manager'],
     'images': [

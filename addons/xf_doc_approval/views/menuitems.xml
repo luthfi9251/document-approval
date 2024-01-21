@@ -3,7 +3,8 @@
     <data>
         <menuitem id="menu_xf_doc_approval_root" name="Document Management"
                   web_icon="xf_doc_approval,static/description/icon.png"
-                  groups="xf_doc_approval.group_xf_doc_approval_user"/>
+                  groups="xf_doc_approval.group_xf_doc_approval_user"
+                  sequence="1"/>
 
         <menuitem id="menu_xf_doc_approval_configuration" name="Configuration"
                   parent="menu_xf_doc_approval_root"

@@ -1,4 +1,9 @@
 from odoo import fields, models, api
+import logging
+
+def cetak(var):
+    logger = logging.getLogger(__name__)
+    logger.info(var)
 
 class HREmployee(models.Model):
     _name="docav.department"
@@ -19,7 +24,17 @@ class HREmployee(models.Model):
     misi = fields.Html(string="Misi")
     misi_inggris = fields.Html(string="Misi Inggris")
     kode_fakultas = fields.Char(string="Kode Fakultas")
+    master_department_id = fields.Many2one('docav.department', string="Master Department", readonly=True)
 
+    @api.model
+    def create(self, vals):
+        # new_department = self.env['hr.department'].create({
+        #     'name': vals["name"]
+        # })
+        # vals["master_department_id"] = new_department.id
+        department = super(HREmployee, self).create(vals)
+        
+        return department
 
 
 
