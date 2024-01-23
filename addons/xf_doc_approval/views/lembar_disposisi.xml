@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="xf_doc_approval.report_disposisi" model="ir.actions.report">
+            <field name="name">Lembar Disposisi</field>
+            <field name="model">xf.doc.approval.document.package</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">xf_doc_approval.report_disposisi_template</field>
+            <field name="report_file">xf_doc_approval.report_disposisi_template</field>
+            <field name="binding_model_id" ref="xf_doc_approval.model_xf_doc_approval_document_package"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="xf_doc_approval.report_disposisi_template">
+            <t t-call="web.html_container">
+                <div class="header">
+                    <div
+                        style="
+                            width: 100%;
+                            display: -webkit-box;
+                            flex-direction: row;
+                            -webkit-box-align: center;
+                            align-items: center;
+                            gap: 1rem;
+                        "
+                    >
+                        <img
+                            src="/xf_doc_approval/static/logo-udinus-hitam-putih.png"
+                            style="width: 120px; height: 120px"
+                        />
+                        <div
+                            style="
+                                width: calc(100%-120px);
+                                flex-direction: column;
+                                text-align: center;
+                                margin-left: 7.2rem;
+                            "
+                        >
+                            <h3><strong>Universitas Dian Nuswantoro</strong></h3>
+                            <p>
+                                Jl. Imam Bonjol No. 205 - 207 Semarang 50131 - Tel. (024)
+                                3560567
+                            </p>
+                            <h4></h4>
+                        </div>
+                    </div>
+                    <div
+                        style="
+                            margin: 1rem  0;
+                            height: 0.5rem;
+                            width: 100%;
+                            border-top: 2px solid black;
+                        "
+                    ></div>
+                </div>
+                <div class="content" style="padding: 1rem 0;  width: 100%">
+                    <t t-foreach="docs" t-as="o">
+                        <h4 style="text-align: center; margin: 1rem 0"><strong>LEMBAR DISPOSISI</strong></h4>
+                        <div class="agenda" style="width: 100%; display: -webkit-box; margin-top:1px">
+                            <table style="width:300px;border-spacing: 1rem 0">
+                                <tr>
+                                    <td><strong>Tanggal Agenda</strong></td>
+                                    <td><span t-field="o.tanggal_agenda"/></td>
+                                </tr>
+                            </table>
+                            <table style="width:300px;border-spacing: 1rem 0">
+                                <tr>
+                                    <td><strong>Nomor Agenda</strong></td>
+                                    <td><span t-field="o.kode_nomor_agenda"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="dokumen" style="margin-top:1rem;">
+                            <table style="border-spacing: 1rem 0.5rem">
+                                <tr>
+                                    <td style="width: 150px">Nama Dokumen</td>
+                                    <td>:</td>
+                                    <td style="width: 400px"><span t-field="o.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 150px">Dari</td>
+                                    <td>:</td>
+                                    <td style="width: 400px"><span t-field="o.asal_dokumen"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 150px">Nomor Surat</td>
+                                    <td>:</td>
+                                    <td style="width: 400px"><span t-field="o.nomor"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 150px">Tanggal Surat</td>
+                                    <td>:</td>
+                                    <td style="width: 400px"><span t-field="o.tanggal_surat"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 150px">Status Dokumen</td>
+                                    <td>:</td>
+                                    <td style="width: 400px"><span t-field="o.status_dokumen"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="approver" style="padding: 0 1rem;">
+                            <h4>Diteruskan Ke</h4>
+                            <table style="width: 100%; border-collapse: collapse">
+                                <thead>
+                                    <tr>
+                                        <th>Nama</th>
+                                        <th>Status</th>
+                                        <th>Keterangan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="o.approver_ids" t-as="line">
+                                        <tr>
+                                            <td><span t-field="line.employee_id.full_name"/></td>
+                                            <td style="text-align:center"><span t-field="line.state"/></td>
+                                            <td><span t-field="line.notes"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </div>
+                <style>
+                    .approver td, .approver th, .approver tr{
+                        border: 1px solid black;
+                        border-collapse: collapse;
+                    }
+                    .approver td, .approver th{
+                        padding: 0.5rem 1rem;
+                    }
+                </style>
+            </t>
+        </template>
+        
+    
+    </data>
+</odoo>

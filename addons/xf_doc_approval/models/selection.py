@@ -55,3 +55,22 @@ class ApprovalStep(Selection):
     step_range = list(range(1, 21))
     list = [("{:02d}".format(step), "{:02d}".format(step)) for step in step_range]
     default = list[0][0]
+
+class StatusSurat(Selection):
+    list = [
+        ('rahasia', 'Rahasia'),
+        ('penting', 'Penting'),
+        ('segera', 'Segera'),
+        ('biasa', 'Biasa')
+    ]
+    default = list[3][0]
+
+class KodeAgenda(Selection):
+    list = [
+        ('I', 'I'),
+        ('U', 'U'),
+        ('D', 'D'),
+        ('PT', 'PT'),
+        ('DIS', 'DIS'),
+    ]
+    default = list[0][0]

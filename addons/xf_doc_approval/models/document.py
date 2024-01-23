@@ -106,6 +106,10 @@ class DocApprovalDocumentPackage(models.Model):
         readonly=True,
         states=_editable_states,
     )
+    # disposisi_ids = fields.Many2one(
+    #     string = "Disposisi ID",
+    #     comodel_name='xf.doc.document.disposisi',
+    # )
 
     is_initiator = fields.Boolean('Is Initiator', compute='_compute_access')
     is_approver = fields.Boolean('Is Approver', compute='_compute_access')

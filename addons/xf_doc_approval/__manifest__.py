@@ -46,6 +46,7 @@ Key Features:
         # Views
         'views/menuitems.xml',
         'views/team.xml',
+        'views/lembar_disposisi.xml',
         'views/document_package.xml',
         'views/approver_wizard.xml',
         # Data

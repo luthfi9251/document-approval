@@ -38,6 +38,23 @@
                                attrs="{'invisible':[('state', '!=', 'draft'), ('description', '=', False)]}">
                             <field name="description" nolabel="1" colspan="2"/>
                         </group>
+                        <group name="disposisi" string="Lembar Disposisi">
+                            <group name="data_dokumen" string="Data Dokumen">
+                                <field name="asal_dokumen" readonly="1"/>
+                                <field name="nomor" />
+                                <field name="tanggal_surat" />
+                                <field name="status_dokumen" />
+                            </group>
+                            <group name="data_agenda" string="Data Agenda">
+                                <field name="nomor_agenda" />
+                                <field name="kode_agenda" />
+                                <field name="tanggal_agenda" />
+                                <field name="kode_nomor_agenda" />
+                                <button string="Disposisi" type="object" name="generate_nomor_agenda" class="oe_highlight"/>
+                                <!-- <button string="Generate PDF" type="object" class="oe_highlight" name="generate_pdf"/> -->
+                            </group>
+                        </group>
+
                         <group name="documents" string="Documents">
                             <field name="document_ids" nolabel="1" colspan="2">
                                 <tree editable="bottom">
@@ -127,7 +144,7 @@
             <field name="name">Documents</field>
             <field name="res_model">xf.doc.approval.document.package</field>
         </record>
-
+        
         <menuitem
                 id="menu_xf_doc_approval_document_package"
                 action="action_xf_doc_approval_document_package"
